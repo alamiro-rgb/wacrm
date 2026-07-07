@@ -36,7 +36,7 @@ vi.mock("@supabase/ssr", () => ({
 }));
 
 // Imported after the mock is registered.
-const { middleware } = await import("./middleware");
+const { middleware } = await import("./proxy");
 
 beforeEach(() => {
   process.env.NEXT_PUBLIC_SUPABASE_URL = "https://test.supabase.co";
@@ -53,7 +53,7 @@ const ROTATED = {
   options: { path: "/", httpOnly: true },
 };
 
-describe("middleware — refreshed auth cookies survive redirects", () => {
+describe("proxy — refreshed auth cookies survive redirects", () => {
   it("carries the rotated token when redirecting a signed-in user off /login", async () => {
     mockUser = { id: "user-1" };
     refreshedCookies = [ROTATED];
